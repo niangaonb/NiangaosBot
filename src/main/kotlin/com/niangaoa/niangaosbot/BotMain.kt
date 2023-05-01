@@ -19,6 +19,7 @@ object BotMain : KotlinPlugin(
     )
 ) {
     private val botMessageFactory = BotMessageFactory()
+    private val botName = BotName()
 
     override fun onEnable() {
         this.reloadMainConfig()
@@ -35,8 +36,8 @@ object BotMain : KotlinPlugin(
     }
 
     private fun addEvent() {
-        botMessageFactory.getEvent(BotName.botCommunicate)?.start()
-        botMessageFactory.getEvent(BotName.botHelp)?.start()
-        botMessageFactory.getEvent(BotName.botRandom)?.start()
+        botMessageFactory.getEvent(botName.botCommunicate)?.start()
+        botMessageFactory.getEvent(botName.botHelp)?.start()
+        botMessageFactory.getEvent(botName.botRandom)?.start()
     }
 }
