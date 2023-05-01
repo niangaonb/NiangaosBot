@@ -1,9 +1,12 @@
 package com.niangaoa.niangaosbot.bot
 
+import com.niangaoa.niangaosbot.BotMain
 import com.niangaoa.niangaosbot.api.IBotMessage
 import com.niangaoa.niangaosbot.tools.MainConfigDataUtils
+import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.Event
 import net.mamoe.mirai.event.EventChannel
+import net.mamoe.mirai.event.GlobalEventChannel
 
 /**
  * 所有操作消息的基类
@@ -11,8 +14,12 @@ import net.mamoe.mirai.event.EventChannel
  * @see MainConfigDataUtils
  * @author niangaoa
  */
-abstract class BotMessage : IBotMessage {
+abstract class BotMessage : IBotMessage, Runnable{
     protected val mainConfigDataUtils = MainConfigDataUtils()
-    override fun wifeEventChannel(event: EventChannel<Event>) {
+    protected val eventChannel = GlobalEventChannel.parentScope(BotMain)
+    override fun botEventChannel(event: EventChannel<Event>) {
+    }
+    override fun run() {
+        botEventChannel(eventChannel)
     }
 }

@@ -15,8 +15,8 @@ import net.mamoe.mirai.message.data.content
  * @see BotMessage
  * */
 class BotHelp : BotMessage() {
-    override fun wifeEventChannel(event: EventChannel<Event>) {
-        super.wifeEventChannel(event)
+    override fun botEventChannel(event: EventChannel<Event>) {
+        super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             if (message.content == "重载配置") {
                 //进行了管理员判断

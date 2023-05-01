@@ -14,8 +14,8 @@ import java.util.*
  * @author niangaoa
  * */
 class BotCommunicate : BotMessage() {
-    override fun wifeEventChannel(event: EventChannel<Event>) {
-        super.wifeEventChannel(event)
+    override fun botEventChannel(event: EventChannel<Event>) {
+        super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             //这里判断了组(在AcceptedGroups里设置)
             if (mainConfigDataUtils.isGottenGroupInConfig(group)) {
@@ -50,5 +50,9 @@ class BotCommunicate : BotMessage() {
                 }
             }
         }
+    }
+
+    override fun run() {
+        botEventChannel(eventChannel)
     }
 }

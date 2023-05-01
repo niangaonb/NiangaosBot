@@ -16,8 +16,8 @@ import java.util.*
  * @see BotMessage
  * */
 class BotRandom : BotMessage() {
-    override fun wifeEventChannel(event: EventChannel<Event>) {
-        super.wifeEventChannel(event)
+    override fun botEventChannel(event: EventChannel<Event>) {
+        super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             if (mainConfigDataUtils.isGottenGroupInConfig(group)) {
                 if (mainConfigDataUtils.isGottenSenderInConfig(sender)) {
@@ -34,5 +34,9 @@ class BotRandom : BotMessage() {
                 }
             }
         }
+    }
+
+    override fun run() {
+        botEventChannel(eventChannel)
     }
 }

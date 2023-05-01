@@ -7,13 +7,11 @@ import com.niangaoa.niangaosbot.bot.BotMessage
 
 class BotMessageFactory {
 
-    fun getEvent(className: String) : BotMessage? {
-        if (className == "Communicate") {
-            return BotCommunicate()
-        }else if (className == "Random") {
-            return BotRandom()
-        }else if (className == "Help") {
-            return BotHelp()
+    fun getEvent(className: String) : Thread? {
+        when (className) {
+            "Communicate" -> return Thread(BotCommunicate())
+            "Random" -> return Thread(BotCommunicate())
+            "Help" -> return Thread(BotHelp())
         }
         return null
     }

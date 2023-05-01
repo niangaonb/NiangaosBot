@@ -7,5 +7,5 @@ import net.mamoe.mirai.event.EventChannel
  * @author niangaoa
  * */
 interface IBotMessage {
-    fun wifeEventChannel(event : EventChannel<Event>)
+    fun botEventChannel(event : EventChannel<Event>)
 }
