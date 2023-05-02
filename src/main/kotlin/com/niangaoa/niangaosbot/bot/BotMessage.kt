@@ -1,9 +1,7 @@
 package com.niangaoa.niangaosbot.bot
 
 import com.niangaoa.niangaosbot.BotMain
-import com.niangaoa.niangaosbot.api.IBotMessage
 import com.niangaoa.niangaosbot.tools.MainConfigDataUtils
-import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.Event
 import net.mamoe.mirai.event.EventChannel
 import net.mamoe.mirai.event.GlobalEventChannel
@@ -16,9 +14,8 @@ import net.mamoe.mirai.event.GlobalEventChannel
  */
 abstract class BotMessage : IBotMessage, Runnable{
     protected val mainConfigDataUtils = MainConfigDataUtils()
-    protected val eventChannel = GlobalEventChannel.parentScope(BotMain)
-    override fun botEventChannel(event: EventChannel<Event>) {
-    }
+    private val eventChannel = GlobalEventChannel.parentScope(BotMain)
+    override fun botEventChannel(event: EventChannel<Event>) {}
     override fun run() {
         botEventChannel(eventChannel)
     }

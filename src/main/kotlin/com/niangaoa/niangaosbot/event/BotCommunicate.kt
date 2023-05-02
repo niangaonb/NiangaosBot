@@ -51,8 +51,4 @@ class BotCommunicate : BotMessage() {
             }
         }
     }
-
-    override fun run() {
-        botEventChannel(eventChannel)
-    }
 }

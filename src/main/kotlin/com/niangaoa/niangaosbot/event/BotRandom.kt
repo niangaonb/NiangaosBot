@@ -35,8 +35,4 @@ class BotRandom : BotMessage() {
             }
         }
     }
-
-    override fun run() {
-        botEventChannel(eventChannel)
-    }
 }
