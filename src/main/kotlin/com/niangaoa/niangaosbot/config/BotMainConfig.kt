@@ -12,8 +12,8 @@ import java.nio.charset.StandardCharsets
  * @author niangaoa
  * */
 object BotMainConfig {
-    private val file = File("config/MyWife/GroupConfig.json")
-    private val folder = File("config/MyWife")
+    private val file = File("config/NiangaosBot/GroupConfig.json")
+    private val folder = File("config/NiangaosBot")
     private val gson = Gson()
     private val initJson = HashMap<String, List<Long>>()
     var gottenJson = HashMap<String, JsonArray>()
@@ -23,6 +23,7 @@ object BotMainConfig {
      * 初始化GroupConfig.json
      * 如果没有此文件就新建，有就存至gottenJson
      * */
+    @Synchronized
     fun initMainConfig() {
         initJson["AcceptedGroups"]
         initJson["AcceptedMembers"]
