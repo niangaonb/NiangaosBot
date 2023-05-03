@@ -12,25 +12,23 @@ import java.nio.charset.StandardCharsets
  * @author niangaoa
  * */
 object BotMainConfig {
-    private lateinit var file: File
-    private lateinit var folder : File
-    private lateinit var gson : Gson
-    private var initJson = HashMap<String, List<Long>>()
-    private var gottenJson = HashMap<String, JsonArray>()
+    private val file = File("config/MyWife/GroupConfig.json")
+    private val folder = File("config/MyWife")
+    private val gson = Gson()
+    private val initJson = HashMap<String, List<Long>>()
+    var gottenJson = HashMap<String, JsonArray>()
+        private set
 
     /**
      * 初始化GroupConfig.json
      * 如果没有此文件就新建，有就存至gottenJson
      * */
-    fun init() {
-        gson = Gson()
-        initJson["AcceptedGroups"] = listOf(111L, 111L)
-        initJson["AcceptedMembers"] = listOf(111L, 111L)
-        initJson["BanedGroups"] = listOf(111L, 111L)
-        initJson["BanedMembers"] = listOf(111L, 111L)
-        initJson["AdminMembers"] = listOf(111L, 111L)
-        folder = File("config/MyWife")
-        file = File("config/MyWife/GroupConfig.json")
+    fun initMainConfig() {
+        initJson["AcceptedGroups"]
+        initJson["AcceptedMembers"]
+        initJson["BanedGroups"]
+        initJson["BanedMembers"]
+        initJson["AdminMembers"]
         if (file.isFile) {
             val jsonParser = JsonParser.parseReader(FileReader(file)) as JsonObject
             gottenJson["AcceptedGroups"] = jsonParser.get("AcceptedGroups").asJsonArray
@@ -43,7 +41,7 @@ object BotMainConfig {
             file.createNewFile()
             try {
                 FileOutputStream(file).use { ops ->
-                    val writer: Writer = OutputStreamWriter(ops, StandardCharsets.UTF_8)
+                    val writer = OutputStreamWriter(ops, StandardCharsets.UTF_8)
                     writer.append(gson.toJson(initJson))
                     writer.close()
                     ops.close()
@@ -58,7 +56,4 @@ object BotMainConfig {
      * 用来得到gottenMap的方法
      * @return HashMap<String, JsonArray>
      * */
-    fun getGottenMap() : HashMap<String, JsonArray> {
-        return gottenJson
-    }
 }

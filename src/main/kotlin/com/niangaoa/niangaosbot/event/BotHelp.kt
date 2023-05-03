@@ -1,8 +1,8 @@
 package com.niangaoa.niangaosbot.event
 
 import com.niangaoa.niangaosbot.BotMain
-import com.niangaoa.niangaosbot.config.BotMainConfig
 import com.niangaoa.niangaosbot.bot.BotMessage
+import com.niangaoa.niangaosbot.config.BotMainConfig
 import net.mamoe.mirai.event.Event
 import net.mamoe.mirai.event.EventChannel
 import net.mamoe.mirai.event.events.GroupMessageEvent
@@ -22,16 +22,16 @@ class BotHelp : BotMessage() {
                 //进行了管理员判断
                 if (mainConfigDataUtils.isGottenAdminInConfig(sender)) {
                     BotMain.reloadMainConfig()
-                    group.sendMessage("重载成功，允许的管理员有：\n" +
-                            "${BotMainConfig.getGottenMap()["AdminMembers"]}\n\n"
+                    sender.sendMessage("重载成功，允许的管理员有：\n" +
+                            "${BotMainConfig.gottenJson["AdminMembers"]}\n\n"
                             + "允许的群聊有：\n" +
-                            "${BotMainConfig.getGottenMap()["AcceptedGroups"]}\n\n" +
+                            "${BotMainConfig.gottenJson["AcceptedGroups"]}\n\n" +
                             "允许的成员有(部分小功能)：\n" +
-                            "${BotMainConfig.getGottenMap()["AcceptedMembers"]}\n\n" +
+                            "${BotMainConfig.gottenJson["AcceptedMembers"]}\n\n" +
                             "禁止的群聊有：\n" +
-                            "${BotMainConfig.getGottenMap()["BanedGroups"]}\n\n" +
+                            "${BotMainConfig.gottenJson["BanedGroups"]}\n\n" +
                             "禁止的成员有：\n" +
-                            "${BotMainConfig.getGottenMap()["BanedMembers"]}")
+                            "${BotMainConfig.gottenJson["BanedMembers"]}")
                 } else {
                     group.sendMessage("权限不足，请检查配置文件")
                 }
@@ -44,7 +44,8 @@ class BotHelp : BotMessage() {
                             "1.随机生成a,b(a和b必须为大于等于0小于10的数)\n" +
                             "2.帮助列表\n\n" +
                             "二.管理员使用\n" +
-                            "1.重载配置")
+                            "1.重载配置\n" +
+                            "2.监督@谁谁谁")
                 }
             }
         }

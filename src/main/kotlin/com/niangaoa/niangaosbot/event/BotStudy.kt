@@ -6,32 +6,35 @@ import net.mamoe.mirai.event.EventChannel
 import net.mamoe.mirai.event.events.GroupMessageEvent
 import net.mamoe.mirai.message.data.content
 
+/**学习监督类
+ * 注意：这不是机器学习类，只是用来监督不自觉的年糕
+ * @author niangaoa
+ * */
 class BotStudy : BotMessage() {
-    private val iDontKnowTheName = HashMap<Long, Boolean>()
+    //存入获取的qq与是否又说话
+    private val targetMap = HashMap<Long, Boolean>()
+    //获取qq号
     private val target = StringBuffer()
 
     override fun botEventChannel(event: EventChannel<Event>) {
         super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             if (mainConfigDataUtils.isGottenGroupInConfig(group)) {
-                System.err.println("Target: $target")
                 if (message.content.contains("监督")) {
                     target.append(message.content)
                     target.delete(0, 3)
                     group.sendMessage("要认真哦~")
-                    if (iDontKnowTheName.isEmpty()) {
-                        iDontKnowTheName[target.toString().toLong()] = false
-                        System.err.println("111")
+                    if (targetMap.isEmpty()) {
+                        targetMap[target.toString().toLong()] = false
                     }
                 }
                 if (sender.id == target.toString().toLong()) {
-                    iDontKnowTheName[target.toString().toLong()] = true
+                    targetMap[target.toString().toLong()] = true
                 }
-                if (iDontKnowTheName[target.toString().toLong()]!!) {
+                if (targetMap[target.toString().toLong()] == true) {
                     group.sendMessage("说了要好好学习的 哼")
                     group.members[target.toString().toLong()]?.mute(3600)
-                    System.err.println("1345rsadf")
-                    iDontKnowTheName.clear()
+                    targetMap.clear()
                 }
             }
         }

@@ -32,7 +32,7 @@ object BotMain : KotlinPlugin(
      * @see BotMainConfig
      * */
     fun reloadMainConfig() {
-        BotMainConfig.init()
+        BotMainConfig.initMainConfig()
     }
 
     private fun addEvent() {

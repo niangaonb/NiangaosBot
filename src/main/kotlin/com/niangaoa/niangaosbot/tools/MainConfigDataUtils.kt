@@ -18,14 +18,14 @@ class MainConfigDataUtils {
      * */
     fun isGottenGroupInConfig(group : Group) : Boolean {
         dataBool = false
-        for(vec in 0 until (BotMainConfig.getGottenMap()["AcceptedGroups"]?.size() ?: 1)) {
+        for(vec in 0 until (BotMainConfig.gottenJson["AcceptedGroups"]?.size() ?: 1)) {
             if (group.id ==
-                (BotMainConfig.getGottenMap()["AcceptedGroups"]?.get(vec)?.asLong ?: 111))
+                (BotMainConfig.gottenJson["AcceptedGroups"]?.get(vec)?.asLong ?: 111))
                 dataBool = true
         }
-        for(vec in 0 until (BotMainConfig.getGottenMap()["BanedGroups"]?.size() ?: 1)) {
+        for(vec in 0 until (BotMainConfig.gottenJson["BanedGroups"]?.size() ?: 1)) {
             if (group.id ==
-                (BotMainConfig.getGottenMap()["BanedGroups"]?.get(vec)?.asLong ?: 111))
+                (BotMainConfig.gottenJson["BanedGroups"]?.get(vec)?.asLong ?: 111))
                 dataBool = false
         }
         return dataBool
@@ -38,14 +38,14 @@ class MainConfigDataUtils {
      * */
     fun isGottenSenderInConfig(sender : Member) : Boolean {
         dataBool = false
-        for(vec in 0 until (BotMainConfig.getGottenMap()["AcceptedMembers"]?.size() ?: 1)) {
+        for(vec in 0 until (BotMainConfig.gottenJson["AcceptedMembers"]?.size() ?: 1)) {
             if (sender.id ==
-                (BotMainConfig.getGottenMap()["AcceptedMembers"]?.get(vec)?.asLong ?: 111))
+                (BotMainConfig.gottenJson["AcceptedMembers"]?.get(vec)?.asLong ?: 111))
                 dataBool = true
         }
-        for(vec in 0 until (BotMainConfig.getGottenMap()["BanedMembers"]?.size() ?: 1)) {
+        for(vec in 0 until (BotMainConfig.gottenJson["BanedMembers"]?.size() ?: 1)) {
             if (sender.id ==
-                (BotMainConfig.getGottenMap()["BanedMembers"]?.get(vec)?.asLong ?: 111)) {
+                (BotMainConfig.gottenJson["BanedMembers"]?.get(vec)?.asLong ?: 111)) {
                 dataBool = false
             }
         }
@@ -59,14 +59,14 @@ class MainConfigDataUtils {
      * */
     fun isGottenAdminInConfig(sender: Member) : Boolean {
         dataBool = false
-        for(vec in 0 until (BotMainConfig.getGottenMap()["AdminMembers"]?.size() ?: 1)) {
+        for(vec in 0 until (BotMainConfig.gottenJson["AdminMembers"]?.size() ?: 1)) {
             if (sender.id ==
-                (BotMainConfig.getGottenMap()["AdminMembers"]?.get(vec)?.asLong ?: 111))
+                (BotMainConfig.gottenJson["AdminMembers"]?.get(vec)?.asLong ?: 111))
                 dataBool = true
         }
-        for(vec in 0 until (BotMainConfig.getGottenMap()["BanedMembers"]?.size() ?: 1)) {
+        for(vec in 0 until (BotMainConfig.gottenJson["BanedMembers"]?.size() ?: 1)) {
             if (sender.id ==
-                (BotMainConfig.getGottenMap()["BanedMembers"]?.get(vec)?.asLong ?: 111))
+                (BotMainConfig.gottenJson["BanedMembers"]?.get(vec)?.asLong ?: 111))
                 dataBool = false
         }
         return dataBool
