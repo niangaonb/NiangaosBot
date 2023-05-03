@@ -20,21 +20,25 @@ class BotStudy : BotMessage() {
         super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             if (mainConfigDataUtils.isGottenGroupInConfig(group)) {
-                if (message.content.contains("监督")) {
-                    target.append(message.content)
-                    target.delete(0, 3)
-                    group.sendMessage("要认真哦~")
-                    if (targetMap.isEmpty()) {
-                        targetMap[target.toString().toLong()] = false
+                if (mainConfigDataUtils.isGottenAdminInConfig(sender)) {
+                    if (message.content.contains("监督")) {
+                        target.append(message.content)
+                        target.delete(0, 3)
+                        group.sendMessage("要认真哦~")
+                        if (targetMap.isEmpty()) {
+                            targetMap[target.toString().toLong()] = false
+                        }
                     }
-                }
-                if (sender.id == target.toString().toLong()) {
-                    targetMap[target.toString().toLong()] = true
-                }
-                if (targetMap[target.toString().toLong()] == true) {
-                    group.sendMessage("说了要好好学习的 哼")
-                    group.members[target.toString().toLong()]?.mute(3600)
-                    targetMap.clear()
+                    if (target.toString() !== "") {
+                        if (sender.id == target.toString().toLong()) {
+                            targetMap[target.toString().toLong()] = true
+                        }
+                        if (targetMap[target.toString().toLong()] == true) {
+                            group.sendMessage("说了要好好学习的 哼")
+                            group.members[target.toString().toLong()]?.mute(3600)
+                            targetMap.clear()
+                        }
+                    }
                 }
             }
         }

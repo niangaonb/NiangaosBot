@@ -5,5 +5,6 @@ class BotName {
     val botCommunicate = "Communicate"
     val botRandom = "Random"
     val botStudy = "Study"
+    val botWelcome = "Welcome"
 }
 

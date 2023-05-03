@@ -40,5 +40,6 @@ object BotMain : KotlinPlugin(
         botMessageFactory.getEvent(botName.botHelp)?.start()
         botMessageFactory.getEvent(botName.botRandom)?.start()
         botMessageFactory.getEvent(botName.botStudy)?.start()
+        botMessageFactory.getEvent(botName.botWelcome)?.start()
     }
 }
