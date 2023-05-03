@@ -51,9 +51,4 @@ object BotMainConfig {
             }
         }
     }
-
-    /**
-     * 用来得到gottenMap的方法
-     * @return HashMap<String, JsonArray>
-     * */
 }
