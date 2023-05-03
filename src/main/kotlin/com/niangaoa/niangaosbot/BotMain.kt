@@ -15,7 +15,7 @@ object BotMain : KotlinPlugin(
     JvmPluginDescription(
         id = "com.niangaoa.niangaosbot",
         name = "年糕的机器人",
-        version = "0.0.1"
+        version = "0.1.0"
     )
 ) {
     private val botMessageFactory = BotMessageFactory()
