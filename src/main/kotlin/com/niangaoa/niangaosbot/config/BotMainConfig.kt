@@ -25,11 +25,11 @@ object BotMainConfig {
      * */
     @Synchronized
     fun initMainConfig() {
-        initJson["AcceptedGroups"]
-        initJson["AcceptedMembers"]
-        initJson["BanedGroups"]
-        initJson["BanedMembers"]
-        initJson["AdminMembers"]
+        initJson["AcceptedGroups"] = listOf()
+        initJson["AcceptedMembers"] = listOf()
+        initJson["BanedGroups"] = listOf()
+        initJson["BanedMembers"] = listOf()
+        initJson["AdminMembers"] = listOf()
         if (file.isFile) {
             val jsonParser = JsonParser.parseReader(FileReader(file)) as JsonObject
             gottenJson["AcceptedGroups"] = jsonParser.get("AcceptedGroups").asJsonArray

@@ -29,7 +29,7 @@ class BotStudy : BotMessage() {
                             targetMap[target.toString().toLong()] = false
                         }
                     }
-                    if (target.toString() !== "") {
+                    if (target.isNotEmpty()) {
                         if (sender.id == target.toString().toLong()) {
                             targetMap[target.toString().toLong()] = true
                         }
