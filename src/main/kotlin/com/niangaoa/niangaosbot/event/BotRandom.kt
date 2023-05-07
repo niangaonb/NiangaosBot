@@ -20,17 +20,15 @@ class BotRandom : BotMessage() {
         super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             if (mainConfigDataUtils.isGottenGroupInConfig(group)) {
-                if (mainConfigDataUtils.isGottenSenderInConfig(sender)) {
-                    if (message.content.contains("随机生成")) {
-                        val buffer = StringBuffer(message.content)
-                        buffer.delete(0, 4)
-                        buffer.delete(1, 2)
-                        val random = Random()
-                        val i1 = buffer.toString().toInt() / 10
-                        val i2 = buffer.toString().toInt() - ((buffer.toString().toInt() / 10)*10) + 1
-                        val r1 = random.nextInt(i1, i2)
-                        group.sendMessage(At(sender.id) + "你抽到了$r1~")
-                    }
+                if (message.content.contains("随机生成")) {
+                    val buffer = StringBuffer(message.content)
+                    buffer.delete(0, 4)
+                    buffer.delete(1, 2)
+                    val random = Random()
+                    val i1 = buffer.toString().toInt() / 10
+                    val i2 = buffer.toString().toInt() - ((buffer.toString().toInt() / 10)*10) + 1
+                    val r1 = random.nextInt(i1, i2)
+                    group.sendMessage(At(sender.id) + "你抽到了$r1~")
                 }
             }
         }
