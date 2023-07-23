@@ -16,7 +16,7 @@ import java.util.*
  * @author niangaoa
  * */
 class BotGuessMusic : BotMessage() {
-    private lateinit var buffer : StringBuffer
+    private var buffer = StringBuffer()
     private var key = false
     private var randomInt = -1
 
