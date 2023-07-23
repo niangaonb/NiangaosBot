@@ -11,6 +11,7 @@ class BotMessageFactory {
             "Help" -> return Thread(BotHelp())
             "Study" -> return Thread(BotStudy())
             "Welcome" -> return Thread(BotWelcome())
+            "GuessMusic" -> return Thread(BotGuessMusic())
         }
         return null
     }

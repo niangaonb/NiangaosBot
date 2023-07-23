@@ -15,8 +15,11 @@ object BotMain : KotlinPlugin(
     JvmPluginDescription(
         id = "com.niangaoa.niangaosbot",
         name = "年糕的机器人",
-        version = "0.1.0"
-    )
+        version = "0.0.1"
+    ) {
+        author("niagnaoa")
+        info("年糕自己的机器人")
+    }
 ) {
     private val botMessageFactory = BotMessageFactory()
     private val botName = BotName()
@@ -36,6 +39,7 @@ object BotMain : KotlinPlugin(
     }
 
     private fun addEvent() {
+        botMessageFactory.getEvent(botName.botGuessMusic)?.start()
         botMessageFactory.getEvent(botName.botCommunicate)?.start()
         botMessageFactory.getEvent(botName.botHelp)?.start()
         botMessageFactory.getEvent(botName.botRandom)?.start()
