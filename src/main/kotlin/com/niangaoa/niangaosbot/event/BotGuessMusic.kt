@@ -11,10 +11,13 @@ import net.mamoe.mirai.utils.ExternalResource.Companion.toExternalResource
 import java.io.File
 import java.util.*
 
-
+/**
+ * 随机歌曲类
+ * @author niangaoa
+ * */
 class BotGuessMusic : BotMessage() {
     private lateinit var buffer : StringBuffer
-    private var test = false
+    private var key = false
     private var randomInt = -1
 
     override fun botEventChannel(event: EventChannel<Event>) {
@@ -22,31 +25,39 @@ class BotGuessMusic : BotMessage() {
         event.subscribeAlways<GroupMessageEvent> {
             if (mainConfigDataUtils.isGottenGroupInConfig(group)) {
                 if (message.content == "随机歌曲") {
+                    //获取歌曲文件名
                     val folder = File("music")
                     val musicList = folder.listFiles()
                     val randomMusic = Random()
                     if (musicList != null) {
                         randomInt = randomMusic.nextInt(0, musicList.size)
                     }
+                    //随机歌曲
                     val originalResource = musicList?.get(randomInt)
                     val resource = originalResource?.toExternalResource()
+                    //向服务器上传
                     val audio: Audio = resource.use {
                         group.uploadAudio(resource!!)
                     }
+                    //发送
                     group.sendMessage(audio)
                     group.sendMessage("来猜来猜")
+                    //给buffer发名字，方便后面判断是不是对的名字
                     if (originalResource != null) {
                         buffer = StringBuffer(originalResource.name)
                     }
-                    resource?.close()
+                    //切除后缀名
                     buffer.delete((buffer.length - 4), buffer.length)
-                    test = true
+                    resource?.close()
+                    key = true
+                    //让随机生成的缓存数回到默认
                     randomInt = -1
                 }
-                if (buffer.isNotEmpty() && buffer.toString().contains(message.content) && test) {
-                    group.sendMessage("恭喜" + At(sender.id) +"答对啦！就是$buffer~")
+                if (buffer.isNotEmpty() && buffer.toString().contains(message.content) && key) {
+                    group.sendMessage(At(sender.id) + "恭喜" + sender.nick + "答对啦！就是$buffer~")
+                    //全部归默认
                     buffer.delete(0, buffer.length)
-                    test = false
+                    key = false
                 }
             }
         }
