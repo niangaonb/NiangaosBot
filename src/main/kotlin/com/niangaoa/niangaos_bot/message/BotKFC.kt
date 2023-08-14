@@ -18,8 +18,10 @@ class BotKFC : BotMessage(), IBotMessage {
                 if (message.content == "疯狂星期四") {
                     val httpClient = HttpClient.newHttpClient()
                     val httpRequest = HttpRequest.newBuilder().uri(URI("https://api.jixs.cc/api/wenan-fkxqs/index.php")).setHeader("Content-Type", "application/json").GET().build()
-                    val message = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()).body()
-                    group.sendMessage(message)
+                    val message = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()).body() as String
+                    val buffer = StringBuffer(message)
+                    buffer.delete(0, 2)
+                    group.sendMessage(buffer.toString())
                 }
             }
         }
