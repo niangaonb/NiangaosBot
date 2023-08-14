@@ -1,6 +1,6 @@
-package com.niangaoa.niangaosbot.tools
+package com.niangaoa.niangaos_bot.tools
 
-import com.niangaoa.niangaosbot.config.BotMainConfig
+import com.niangaoa.niangaos_bot.config.BotMainConfig
 import net.mamoe.mirai.contact.Group
 import net.mamoe.mirai.contact.Member
 

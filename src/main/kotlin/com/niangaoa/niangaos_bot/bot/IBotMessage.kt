@@ -1,4 +1,4 @@
-package com.niangaoa.niangaosbot.bot
+package com.niangaoa.niangaos_bot.bot
 
 import net.mamoe.mirai.event.Event
 import net.mamoe.mirai.event.EventChannel

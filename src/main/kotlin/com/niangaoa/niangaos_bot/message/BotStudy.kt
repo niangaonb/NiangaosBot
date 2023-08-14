@@ -1,6 +1,7 @@
-package com.niangaoa.niangaosbot.event
+package com.niangaoa.niangaos_bot.message
 
-import com.niangaoa.niangaosbot.bot.BotMessage
+import com.niangaoa.niangaos_bot.bot.BotMessage
+import com.niangaoa.niangaos_bot.bot.IBotMessage
 import net.mamoe.mirai.event.Event
 import net.mamoe.mirai.event.EventChannel
 import net.mamoe.mirai.event.events.GroupMessageEvent
@@ -10,14 +11,13 @@ import net.mamoe.mirai.message.data.content
  * 注意：这不是机器学习类，只是用来监督不自觉的年糕
  * @author niangaoa
  * */
-class BotStudy : BotMessage() {
+class BotStudy : BotMessage(), IBotMessage {
     //存入获取的qq与是否又说话
     private val targetMap = HashMap<Long, Boolean>()
     //获取qq号
     private val target = StringBuffer()
 
     override fun botEventChannel(event: EventChannel<Event>) {
-        super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             if (mainConfigDataUtils.isGottenGroupInConfig(group)) {
                 if (mainConfigDataUtils.isGottenAdminInConfig(sender)) {

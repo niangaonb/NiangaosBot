@@ -1,6 +1,7 @@
-package com.niangaoa.niangaosbot.event
+package com.niangaoa.niangaos_bot.message
 
-import com.niangaoa.niangaosbot.bot.BotMessage
+import com.niangaoa.niangaos_bot.bot.BotMessage
+import com.niangaoa.niangaos_bot.bot.IBotMessage
 import net.mamoe.mirai.event.Event
 import net.mamoe.mirai.event.EventChannel
 import net.mamoe.mirai.event.events.GroupMessageEvent
@@ -13,9 +14,8 @@ import java.util.*
  * @see BotMessage
  * @author niangaoa
  * */
-class BotCommunicate : BotMessage() {
+class BotCommunicate : BotMessage(), IBotMessage {
     override fun botEventChannel(event: EventChannel<Event>) {
-        super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             //这里判断了组(在AcceptedGroups里设置)
             if (mainConfigDataUtils.isGottenGroupInConfig(group)) {

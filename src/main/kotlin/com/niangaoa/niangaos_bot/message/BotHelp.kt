@@ -1,8 +1,9 @@
-package com.niangaoa.niangaosbot.event
+package com.niangaoa.niangaos_bot.message
 
-import com.niangaoa.niangaosbot.BotMain
-import com.niangaoa.niangaosbot.bot.BotMessage
-import com.niangaoa.niangaosbot.config.BotMainConfig
+import com.niangaoa.niangaos_bot.BotMain
+import com.niangaoa.niangaos_bot.bot.BotMessage
+import com.niangaoa.niangaos_bot.bot.IBotMessage
+import com.niangaoa.niangaos_bot.config.BotMainConfig
 import net.mamoe.mirai.event.Event
 import net.mamoe.mirai.event.EventChannel
 import net.mamoe.mirai.event.events.GroupMessageEvent
@@ -14,9 +15,8 @@ import net.mamoe.mirai.message.data.content
  * @author niangaoa
  * @see BotMessage
  * */
-class BotHelp : BotMessage() {
+class BotHelp : BotMessage(), IBotMessage {
     override fun botEventChannel(event: EventChannel<Event>) {
-        super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             if (message.content == "重载配置") {
                 //进行了管理员判断
@@ -43,7 +43,8 @@ class BotHelp : BotMessage() {
                             "一.普通指令\n" +
                             "1.随机生成a,b(a和b必须为大于等于0小于10的数)\n" +
                             "2.帮助列表\n" +
-                            "3.随机歌曲\n\n" +
+                            "3.随机歌曲\n" +
+                            "4.疯狂星期四\n\n" +
                             "二.管理员使用\n" +
                             "1.重载配置\n" +
                             "2.监督@谁谁谁(目前只能监督单人)")

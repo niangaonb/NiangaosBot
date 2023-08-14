@@ -1,6 +1,7 @@
-package com.niangaoa.niangaosbot.event
+package com.niangaoa.niangaos_bot.message
 
-import com.niangaoa.niangaosbot.bot.BotMessage
+import com.niangaoa.niangaos_bot.bot.BotMessage
+import com.niangaoa.niangaos_bot.bot.IBotMessage
 import net.mamoe.mirai.event.Event
 import net.mamoe.mirai.event.EventChannel
 import net.mamoe.mirai.event.events.GroupMessageEvent
@@ -15,13 +16,12 @@ import java.util.*
  * 随机歌曲类
  * @author niangaoa
  * */
-class BotGuessMusic : BotMessage() {
+class BotGuessMusic : BotMessage(), IBotMessage {
     private var buffer = StringBuffer()
     private var key = false
     private var randomInt = -1
 
     override fun botEventChannel(event: EventChannel<Event>) {
-        super.botEventChannel(event)
         event.subscribeAlways<GroupMessageEvent> {
             if (mainConfigDataUtils.isGottenGroupInConfig(group)) {
                 if (message.content == "随机歌曲") {
@@ -37,7 +37,7 @@ class BotGuessMusic : BotMessage() {
                     val resource = originalResource?.toExternalResource()
                     //向服务器上传
                     val audio: Audio = resource.use {
-                        group.uploadAudio(resource!!)
+                        group.uploadAudio(resource!!.toAutoCloseable())
                     }
                     //发送
                     group.sendMessage(audio)
@@ -48,7 +48,6 @@ class BotGuessMusic : BotMessage() {
                     }
                     //切除后缀名
                     buffer.delete((buffer.length - 4), buffer.length)
-                    resource?.close()
                     key = true
                     //让随机生成的缓存数回到默认
                     randomInt = -1

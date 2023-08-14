@@ -1,4 +1,4 @@
-package com.niangaoa.niangaosbot.config
+package com.niangaoa.niangaos_bot.config
 
 import com.google.gson.Gson
 import com.google.gson.JsonArray
