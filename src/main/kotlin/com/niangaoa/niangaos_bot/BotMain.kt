@@ -1,7 +1,7 @@
 package com.niangaoa.niangaos_bot
 
 import com.niangaoa.niangaos_bot.config.BotMainConfig
-import com.niangaoa.niangaos_bot.multi_thread.Test1
+import com.niangaoa.niangaos_bot.multi_thread.ThreadStorage
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.utils.info
@@ -20,8 +20,9 @@ object BotMain : KotlinPlugin(
         info("年糕自己的机器人")
     }
 ) {
+    private val threadStorage = ThreadStorage()
     override fun onEnable() {
-        this.reloadMainConfig()
+        reloadMainConfig()
         addEvent()
         logger.info { "插件载入成功~欢迎使用"}
     }
@@ -35,7 +36,7 @@ object BotMain : KotlinPlugin(
     }
 
     private fun addEvent() {
-        Test1.t1.start()
-        Test1.t2.start()
+        threadStorage.setOptimizedMessage()
+        threadStorage.threadList.forEach { it.start() }
     }
 }
