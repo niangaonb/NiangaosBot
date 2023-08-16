@@ -10,9 +10,9 @@ class ThreadStorage {
     private val sortedThreadList = ArrayList<Thread>()
 
     fun setOptimizedMessage() {
-        for (i in 0 until MessageStorage.messageList.size) {
+        for (msgList in MessageStorage.messageList) {
             sortedThreadList.add(Thread {
-                MessageStorage.messageList[i].forEach {
+                msgList.forEach {
                     it.botEventChannel(eventChannel)
                 }
             })
