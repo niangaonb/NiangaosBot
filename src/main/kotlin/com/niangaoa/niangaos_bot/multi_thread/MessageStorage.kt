@@ -5,7 +5,7 @@ import com.niangaoa.niangaos_bot.message.*
 
 object MessageStorage {
     val messageList : List<List<IBotMessage>>
-        get() = sortedMessageList
+    get() = sortedMessageList
     private val sortedMessageList = ArrayList<ArrayList<IBotMessage>>()
     private val messageListBuffer = arrayListOf<IBotMessage>(
         BotCommunicate(),
@@ -23,6 +23,7 @@ object MessageStorage {
             in 2..5 -> {
                 val arrayList1 = ArrayList<IBotMessage>()
                 val arrayList2 = ArrayList<IBotMessage>()
+
                 for (i in 0 until messageListBuffer.size) {
                     if (i in 0 until messageListBuffer.size / 2) {
                         arrayList1.add(messageListBuffer[i])
@@ -37,6 +38,7 @@ object MessageStorage {
                 val arrayList1 = ArrayList<IBotMessage>()
                 val arrayList2 = ArrayList<IBotMessage>()
                 val arrayList3 = ArrayList<IBotMessage>()
+
                 for (i in 0 until messageListBuffer.size) {
                     when(i) {
                         in 0 until messageListBuffer.size / 3 -> arrayList1.add(messageListBuffer[i])
@@ -53,6 +55,7 @@ object MessageStorage {
                 val arrayList2 = ArrayList<IBotMessage>()
                 val arrayList3 = ArrayList<IBotMessage>()
                 val arrayList4 = ArrayList<IBotMessage>()
+
                 for (i in 0 until messageListBuffer.size) {
                     when(i) {
                         in 0 until messageListBuffer.size / 4 -> arrayList1.add(messageListBuffer[i])
@@ -72,6 +75,7 @@ object MessageStorage {
                 val arrayList3 = ArrayList<IBotMessage>()
                 val arrayList4 = ArrayList<IBotMessage>()
                 val arrayList5 = ArrayList<IBotMessage>()
+
                 for (i in 0 until messageListBuffer.size) {
                     when(i) {
                         in 0 until messageListBuffer.size / 5 -> arrayList1.add(messageListBuffer[i])
